@@ -15,31 +15,30 @@ import torch.cuda
 # 変更用オプション
 #################################################################################
 # 　d_はデフォルトの略、コマンドからの時は変更できる
-d_EPOCH = 2000
+d_EPOCH = 5000
 # 格子点数および粒子数
-d_LATTICE = 11
-d_PARTICLE = 9
+d_LATTICE = 7
+d_PARTICLE = 5
 # パラメータ
-d_U = 2
+d_U = 4
 d_J = 1
 # output アウトプットするデータの名前
 d_OUTPUT_FILE_NAME = "AAA"
 # GPUを使う場合'cuda' cpu なら'cpu'
 d_GPU = 'cuda'
-
+d_SAMPLE_NUM = 35000
 ################################################################################
 
 # 学習率
-LR = 0.001
+LR = 0.02
 LR_STEP = 1000
-LR_GAMMA = 0.1
+LR_GAMMA = 0.5
 MOMENTUM = 0.95
 # 定数
 MEMO_NAME = "memo.txt"  # 条件記録用
-SAMPLE_NUM = 1000
+
 net_num = 20
 OUTPUT_NAME = "RESULT"
-KILL_DATA = 50
 
 
 # ニューラルネットワーク本体を作成
@@ -65,69 +64,42 @@ class MyLoss(nn.Module):
         self.i_vector_array = torch.from_numpy(self.i_vector_array)
         self.i_vector_array = self.i_vector_array.to(DEVICE)
 
-    def forward(self, n_vector_array, cn_array, cn_tensor_1, cn_tensor_2, sample_num):
-        cn_tensor_1 = (torch.exp(cn_tensor_1[:, :, 0]) * torch.exp(cn_tensor_1[:, :, 1] * 1j)) / (
-                torch.exp(cn_array[:, 0]) * torch.exp(cn_array[:, 1] * 1j))
-        cn_tensor_2 = (torch.exp(cn_tensor_2[:, :, 0]) * torch.exp(cn_tensor_2[:, :, 1] * 1j)) / (
-                torch.exp(cn_array[:, 0]) * torch.exp(cn_array[:, 1] * 1j))
+    def forward(self, n_vector_array, cn_array, cn_tensor_1, cn_tensor_2):
+        cn_array = cn_array[:, 0] * torch.exp(cn_array[:, 1] * 1j)
+        cn_tensor_1 = cn_tensor_1[:, :, 0] * torch.exp(cn_tensor_1[:, :, 1] * 1j)
+        cn_tensor_2 = cn_tensor_2[:, :, 0] * torch.exp(cn_tensor_2[:, :, 1] * 1j)
         return (-J * torch.sum(torch.sqrt(n_vector_array[:, 0:LATTICE - 1] * (n_vector_array[:, 1:LATTICE] + 1)) *
-                                torch.t(torch.conj(cn_tensor_1))
-                                + torch.sqrt((n_vector_array[:, 0:LATTICE - 1] + 1) * n_vector_array[:, 1:LATTICE]) *
-                                torch.t(torch.conj(cn_tensor_2)))
-                + J * torch.sum(self.i_vector_array ** 2 * n_vector_array)
-                - J * (LATTICE - 1) * torch.sum(self.i_vector_array * n_vector_array)
-                + ((LATTICE - 1) ** 2 * J / 4 - U / 2) * torch.sum(n_vector_array)
-                + U / 2 * torch.sum(n_vector_array ** 2)) / sample_num
+                               torch.t(torch.conj(cn_tensor_1) * cn_array)
+                               + torch.sqrt((n_vector_array[:, 0:LATTICE - 1] + 1) * n_vector_array[:, 1:LATTICE]) *
+                               torch.t(torch.conj(cn_tensor_2) * cn_array))
+                + J * torch.sum(
+                    self.i_vector_array ** 2 * n_vector_array * torch.reshape(torch.abs(cn_array) ** 2, (-1, 1)))
+                - J * (LATTICE - 1) * torch.sum(
+                    self.i_vector_array * n_vector_array * torch.reshape(torch.abs(cn_array) ** 2, (-1, 1)))
+                + ((LATTICE - 1) ** 2 * J / 4 - U / 2) * torch.sum(
+                    n_vector_array * torch.reshape(torch.abs(cn_array) ** 2, (-1, 1)))
+                + U / 2 * torch.sum(
+                    n_vector_array ** 2 * torch.reshape(torch.abs(cn_array) ** 2, (-1, 1)))) / torch.sum(
+            torch.abs(cn_array) ** 2)
 
 
-def est_particle(n_vector_array, i, sample_num):
-    return torch.sum(n_vector_array[:, i]) / sample_num
+def est_particle(n_vector_array, i, cn_array):
+    cn_array = cn_array[:, 0] * torch.exp(cn_array[:, 1] * 1j)
+    return torch.sum(n_vector_array[:, i] * torch.abs(cn_array) ** 2) / torch.sum(
+        torch.abs(cn_array) ** 2)
 
 
-def metropolis(sample_num, my_net):
+def montecarlo(sample_num):
     # GPUを使う場合データを変換する。to(DEVICE)
     # 返すベクトル生成
-    n_vector_array = np.zeros([sample_num, LATTICE])
+    rand_array = np.random.randint(0, PARTICLE + 1, (sample_num, LATTICE + 1))
+    rand_array[:, 0] = 0
+    rand_array[:, LATTICE] = PARTICLE
+    rand_array = np.sort(rand_array, axis=1)
+    n_vector_array = rand_array[:, 1:LATTICE + 1] - rand_array[:, 0:LATTICE]
     n_vector_array = torch.from_numpy(n_vector_array).float()
     n_vector_array = n_vector_array.to(DEVICE)
-    # 操作用のベクトル
-    temp_vector = np.zeros([LATTICE])
-    temp_vector = torch.from_numpy(temp_vector).float()
-    temp_vector = temp_vector.to(DEVICE)
-
-    rand_idx = random.randrange(LATTICE)
-    temp_vector[rand_idx] = PARTICLE
-    for j in range(PARTICLE * 5):
-        temp_vector = shuffle_vector(temp_vector)
-    for i in range(sample_num + KILL_DATA):
-        new_vector = shuffle_vector(temp_vector)
-        a1 = torch.sum(temp_vector != 0)
-        a2 = torch.sum(new_vector != 0)
-        b1 = my_net(temp_vector)
-        b1 = torch.exp(b1[0]) * torch.exp(b1[1] * 1j)
-        b2 = my_net(new_vector)
-        b2 = torch.exp(b2[0]) * torch.exp(b2[1] * 1j)
-        alpha = (abs(b2) / abs(b1)) ** 2 * (a1 / a2)
-        if alpha < random.random():
-            new_vector = temp_vector
-        if i >= KILL_DATA:
-            n_vector_array[i - KILL_DATA] = new_vector
     return n_vector_array
-
-
-def shuffle_vector(n_vector):
-    result_n_vector = copy.deepcopy(n_vector)
-    while True:
-        down = random.randrange(LATTICE)
-        if not result_n_vector[down] == 0:
-            break
-    while True:
-        up = random.randrange(LATTICE)
-        if not down == up:
-            break
-    result_n_vector[down] -= 1
-    result_n_vector[up] += 1
-    return result_n_vector
 
 
 def make_sample(n_vector_array, sample_num):
@@ -187,16 +159,14 @@ def learning():
     # 学習開始。エポック数だけ学習を繰り返す。
     for e in range(EPOCH):
         # 学習を行う。
-        my_net.eval()
-        with torch.no_grad():
-            train_n_vector_array = metropolis(SAMPLE_NUM, my_net)
-            train_n_vector_tensor_1, train_n_vector_tensor_2 = make_sample(train_n_vector_array, SAMPLE_NUM)
+        train_n_vector_array = montecarlo(SAMPLE_NUM)
+        train_n_vector_tensor_1, train_n_vector_tensor_2 = make_sample(train_n_vector_array, SAMPLE_NUM)
         my_net.train(True)
         optimizer.zero_grad()
         cn_array = my_net(train_n_vector_array)
         cn_tensor_1 = my_net(train_n_vector_tensor_1)
         cn_tensor_2 = my_net(train_n_vector_tensor_2)
-        energy = criterion(train_n_vector_array, cn_array, cn_tensor_1, cn_tensor_2, SAMPLE_NUM)
+        energy = criterion(train_n_vector_array, cn_array, cn_tensor_1, cn_tensor_2)
         energy.backward()
         optimizer.step()
         train_loss = energy.item()
@@ -206,12 +176,12 @@ def learning():
             history['train_loss'].append(train_loss)
             my_net.eval()
             with torch.no_grad():
-                test_n_vector_array = metropolis(SAMPLE_NUM, my_net)
+                test_n_vector_array = montecarlo(SAMPLE_NUM)
                 test_n_vector_tensor_1, test_n_vector_tensor_2 = make_sample(test_n_vector_array, SAMPLE_NUM)
                 cn_array = my_net(test_n_vector_array)
                 cn_tensor_1 = my_net(test_n_vector_tensor_1)
                 cn_tensor_2 = my_net(test_n_vector_tensor_2)
-                energy = criterion(test_n_vector_array, cn_array, cn_tensor_1, cn_tensor_2, SAMPLE_NUM)
+                energy = criterion(test_n_vector_array, cn_array, cn_tensor_1, cn_tensor_2)
                 test_loss = energy.item()
             history['test_loss'].append(test_loss)
             # 経過を記録して、表示。
@@ -226,14 +196,15 @@ def learning():
     my_net.eval()
     n_vector_result = np.zeros([LATTICE])
     with torch.no_grad():
-        est_n_vector_array = metropolis(SAMPLE_NUM * 10, my_net)
+        criterion = MyLoss(SAMPLE_NUM * 10)
+        est_n_vector_array = montecarlo(SAMPLE_NUM * 10)
         est_n_vector_tensor_1, est_n_vector_tensor_2 = make_sample(est_n_vector_array, SAMPLE_NUM * 10)
         cn_array = my_net(est_n_vector_array)
         cn_tensor_1 = my_net(est_n_vector_tensor_1)
         cn_tensor_2 = my_net(est_n_vector_tensor_2)
-        energy = criterion(est_n_vector_array, cn_array, cn_tensor_1, cn_tensor_2, SAMPLE_NUM * 10)
+        energy = criterion(est_n_vector_array, cn_array, cn_tensor_1, cn_tensor_2)
         for i in range(LATTICE):
-            n_vector_result[i] = est_particle(est_n_vector_array, i, SAMPLE_NUM * 10)
+            n_vector_result[i] = est_particle(est_n_vector_array, i, cn_array)
             est_loss = energy.item()
 
     # 結果をセーブする。
@@ -242,7 +213,7 @@ def learning():
     torch.save(my_net.state_dict(), args.out + "/" + OUTPUT_NAME + "/" + 'model.pth')
     with open(args.out + "/" + OUTPUT_NAME + "/" + 'result.txt', mode='a') as f:
         f.write("\n \n " + str(est_loss))
-        f.write("\n \n " + str(n_vector_result))
+        f.write("\n \n " + np.array2string(n_vector_result, separator=','))
     with open(args.out + "/" + OUTPUT_NAME + "/" + 'history.txt', mode='a') as f:
         f.write("\n \n " + str(history))
 
@@ -272,6 +243,8 @@ if __name__ == '__main__':
                         help='value of J')
     parser.add_argument('--out', '-o', default=d_OUTPUT_FILE_NAME,
                         help='output file name')
+    parser.add_argument('--sample', '-s', default=d_SAMPLE_NUM,
+                        help='output file name')
     args = parser.parse_args()
 
     EPOCH = args.epoch
@@ -281,21 +254,22 @@ if __name__ == '__main__':
     U = args.U
     J = args.J
     OUTPUT_FILE_NAME = args.out
+    SAMPLE_NUM = args.sample
     DEVICE = torch.device(GPU)
 
     result = learning()
     print("ene" + result[0])
     print("num" + result[1])
-    """    
+    """
     aaa = MyModel()
     aaa.to(DEVICE)
     ddd = MyLoss(SAMPLE_NUM)
     ggg = optim.SGD(params=aaa.parameters(), lr=LR, momentum=MOMENTUM)
     start = time.time()
-    bb1 = metropolis(SAMPLE_NUM, aaa)
+    bb1 = montecarlo(SAMPLE_NUM)
     print("metro:{0}".format(time.time() - start) + "[sec]")
     start = time.time()
-    bb2, bb3 = make_sample(bb1,  SAMPLE_NUM)
+    bb2, bb3 = make_sample(bb1, SAMPLE_NUM)
     print("make:{0}".format(time.time() - start) + "[sec]")
     start = time.time()
     cc1 = aaa(bb1)
@@ -303,7 +277,7 @@ if __name__ == '__main__':
     cc3 = aaa(bb3)
     print("net:{0}".format(time.time() - start) + "[sec]")
     start = time.time()
-    fff = ddd(bb1, cc1, cc2, cc3, SAMPLE_NUM)
+    fff = ddd(bb1, cc1, cc2, cc3)
     print("loss:{0}".format(time.time() - start) + "[sec]")
     start = time.time()
     fff.backward()
