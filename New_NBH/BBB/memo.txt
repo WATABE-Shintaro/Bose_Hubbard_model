@@ -1,0 +1,522 @@
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 10:24:39
+ 使用されたデータ:エポック数:200
+ GPU:cuda
+ lattice_point_num:7
+ particle_num:5
+ Lr:0.06
+ STEP:50
+ Gamma:0.6
+ Momentum:0.95
+ sample:5120
+ Batch:1024
+ U:2
+ J:1
+ 
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 10:25:44
+ 使用されたデータ:エポック数:200
+ GPU:cuda
+ lattice_point_num:7
+ particle_num:5
+ Lr:0.06
+ STEP:50
+ Gamma:0.6
+ Momentum:0.95
+ sample:5120
+ Batch:1024
+ U:2
+ J:1
+ 
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 10:31:15
+ 使用されたデータ:エポック数:200
+ GPU:cuda
+ lattice_point_num:7
+ particle_num:5
+ Lr:0.06
+ STEP:50
+ Gamma:0.6
+ Momentum:0.95
+ sample:5120
+ Batch:1024
+ U:2
+ J:1
+ 
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 10:52:36
+ 使用されたデータ:エポック数:200
+ GPU:cuda
+ lattice_point_num:3
+ particle_num:3
+ Lr:0.06
+ STEP:50
+ Gamma:0.6
+ Momentum:0.95
+ sample:5120
+ Batch:1024
+ U:2
+ J:1
+ 
+終了しました2022/11/22 10:52:57
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 10:55:09
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:3
+ particle_num:3
+ Lr:0.06
+ STEP:50
+ Gamma:0.6
+ Momentum:0.95
+ sample:20480
+ Batch:1024
+ U:2
+ J:1
+ 
+終了しました2022/11/22 10:55:27
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 10:55:51
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.06
+ STEP:50
+ Gamma:0.6
+ Momentum:0.95
+ sample:20480
+ Batch:1024
+ U:2
+ J:1
+ 
+終了しました2022/11/22 10:56:09
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 10:57:13
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.06
+ STEP:50
+ Gamma:0.6
+ Momentum:0.95
+ sample:40960
+ Batch:1024
+ U:2
+ J:1
+ 
+終了しました2022/11/22 10:57:48
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 10:58:34
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.06
+ STEP:5
+ Gamma:0.7
+ Momentum:0.95
+ sample:40960
+ Batch:1024
+ U:2
+ J:1
+ 
+終了しました2022/11/22 10:59:09
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:02:05
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.06
+ STEP:5
+ Gamma:0.7
+ Momentum:0.95
+ sample:102400
+ Batch:1024
+ U:2
+ J:1
+ 
+終了しました2022/11/22 11:03:48
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:04:06
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.06
+ STEP:5
+ Gamma:0.7
+ Momentum:0.95
+ sample:1024000
+ Batch:1024
+ U:2
+ J:1
+ 
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:10:22
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:3
+ particle_num:3
+ Lr:0.06
+ STEP:5
+ Gamma:0.7
+ Momentum:0.95
+ sample:10240
+ Batch:1024
+ U:2
+ J:1
+ 
+終了しました2022/11/22 11:10:32
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:10:53
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:3
+ particle_num:3
+ Lr:0.06
+ STEP:5
+ Gamma:0.7
+ Momentum:0.95
+ sample:10240
+ Batch:1024
+ U:2
+ J:1
+ 
+終了しました2022/11/22 11:11:04
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:11:11
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:3
+ particle_num:3
+ Lr:0.06
+ STEP:5
+ Gamma:0.7
+ Momentum:0.95
+ sample:10240
+ Batch:1024
+ U:2
+ J:1
+ 
+終了しました2022/11/22 11:11:21
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:11:56
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.06
+ STEP:5
+ Gamma:0.7
+ Momentum:0.95
+ sample:102400
+ Batch:1024
+ U:2
+ J:1
+ 
+終了しました2022/11/22 11:13:42
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:14:55
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.06
+ STEP:5
+ Gamma:0.7
+ Momentum:0.95
+ sample:102400
+ Batch:1024
+ U:2
+ J:1
+ 
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:16:11
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.06
+ STEP:5
+ Gamma:0.7
+ Momentum:0.95
+ sample:102400
+ Batch:1024
+ U:2
+ J:1
+ 
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:17:19
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.01
+ STEP:5
+ Gamma:0.7
+ Momentum:0.95
+ sample:102400
+ Batch:1024
+ U:2
+ J:1
+ 
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:18:34
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.01
+ STEP:5
+ Gamma:0.7
+ Momentum:0.95
+ sample:102400
+ Batch:1024
+ U:2
+ J:1
+ 
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:19:22
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.01
+ STEP:5
+ Gamma:0.7
+ Momentum:0.95
+ sample:102400
+ Batch:1024
+ U:2
+ J:1
+ 
+終了しました2022/11/22 11:21:12
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:24:36
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.01
+ STEP:5
+ Gamma:0.7
+ Momentum:0.95
+ sample:102400
+ Batch:1024
+ U:2
+ J:1
+ 
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:25:06
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.01
+ STEP:5
+ Gamma:0.7
+ Momentum:0.95
+ sample:102400
+ Batch:1024
+ U:2
+ J:1
+ 
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:25:34
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.01
+ STEP:5
+ Gamma:0.7
+ Momentum:0.95
+ sample:102400
+ Batch:1024
+ U:2
+ J:1
+ 
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:52:35
+ 使用されたデータ:エポック数:10
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.01
+ STEP:2
+ Gamma:0.6
+ Momentum:0.95
+ sample:1024000
+ Batch:102400
+ U:2
+ J:1
+ 
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:53:23
+ 使用されたデータ:エポック数:10
+ GPU:cuda
+ lattice_point_num:3
+ particle_num:3
+ Lr:0.01
+ STEP:2
+ Gamma:0.6
+ Momentum:0.95
+ sample:102400
+ Batch:10240
+ U:2
+ J:1
+ 
+終了しました2022/11/22 11:53:45
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:53:57
+ 使用されたデータ:エポック数:10
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.01
+ STEP:2
+ Gamma:0.6
+ Momentum:0.95
+ sample:102400
+ Batch:10240
+ U:2
+ J:1
+ 
+終了しました2022/11/22 11:54:44
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:54:49
+ 使用されたデータ:エポック数:10
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.01
+ STEP:2
+ Gamma:0.6
+ Momentum:0.95
+ sample:1024000
+ Batch:102400
+ U:2
+ J:1
+ 
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 11:55:35
+ 使用されたデータ:エポック数:10
+ GPU:cuda
+ lattice_point_num:11
+ particle_num:9
+ Lr:0.06
+ STEP:2
+ Gamma:0.6
+ Momentum:0.95
+ sample:102400
+ Batch:10240
+ U:2
+ J:1
+ 
+終了しました2022/11/22 11:56:22
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 12:03:32
+ 使用されたデータ:エポック数:10
+ GPU:cuda
+ lattice_point_num:9
+ particle_num:7
+ Lr:0.06
+ STEP:2
+ Gamma:0.6
+ Momentum:0.95
+ sample:102400
+ Batch:10240
+ U:2
+ J:1
+ 
+終了しました2022/11/22 12:04:12
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 12:05:24
+ 使用されたデータ:エポック数:10
+ GPU:cuda
+ lattice_point_num:9
+ particle_num:7
+ Lr:0.06
+ STEP:2
+ Gamma:0.6
+ Momentum:0.95
+ sample:102400
+ Batch:10240
+ U:2
+ J:1
+ 
+終了しました2022/11/22 12:06:04
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 12:06:35
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:9
+ particle_num:7
+ Lr:0.06
+ STEP:10
+ Gamma:0.6
+ Momentum:0.95
+ sample:102400
+ Batch:10240
+ U:2
+ J:1
+ 
+終了しました2022/11/22 12:08:12
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 12:08:21
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:7
+ particle_num:5
+ Lr:0.06
+ STEP:10
+ Gamma:0.6
+ Momentum:0.95
+ sample:102400
+ Batch:10240
+ U:2
+ J:1
+ 
+終了しました2022/11/22 12:09:52
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 12:10:50
+ 使用されたデータ:エポック数:50
+ GPU:cuda
+ lattice_point_num:7
+ particle_num:5
+ Lr:0.06
+ STEP:10
+ Gamma:0.6
+ Momentum:0.95
+ sample:102400
+ Batch:10240
+ U:2
+ J:1
+ 
+終了しました2022/11/22 12:12:22
+
+
+c:\Users\shwtb\Documents\Wcode\hobby\Bose_Hubbard_model\New_NBH\NBH_B3.pyが実行されました。 2022/11/22 12:12:53
+ 使用されたデータ:エポック数:10
+ GPU:cuda
+ lattice_point_num:7
+ particle_num:5
+ Lr:0.06
+ STEP:10
+ Gamma:0.6
+ Momentum:0.95
+ sample:1024000
+ Batch:102400
+ U:2
+ J:1
+ 
+終了しました2022/11/22 12:18:55
+
